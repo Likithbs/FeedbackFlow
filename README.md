@@ -24,7 +24,26 @@ A modern web application for structured feedback sharing between managers and te
 - Python 3.8+
 - pip (Python package manager)
 
-### Installation
+### Option 1: Docker Deployment (Recommended)
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd feedback-tool
+   ```
+
+2. **Run with Docker Compose**
+   ```bash
+   docker-compose up --build
+   ```
+
+   This will start both the backend (port 5000) and frontend (port 5173) services.
+
+3. **Access the application**
+   - Frontend: http://localhost:5173
+   - Backend API: http://localhost:5000
+
+### Option 2: Manual Installation
 
 1. **Clone the repository**
    ```bash
@@ -48,19 +67,43 @@ A modern web application for structured feedback sharing between managers and te
    # Edit .env with your configuration
    ```
 
-### Running the Application
-
-1. **Start the Python backend**
+5. **Start the Python backend**
    ```bash
    python app.py
    ```
    The API server will run on http://localhost:5000
 
-2. **Start the React frontend** (in a new terminal)
+6. **Start the React frontend** (in a new terminal)
    ```bash
    npm run dev
    ```
    The frontend will run on http://localhost:5173
+
+## Docker Commands
+
+### Build and run backend only
+```bash
+docker build -t feedback-backend .
+docker run -p 5000:5000 -v $(pwd)/data:/app/data feedback-backend
+```
+
+### Development with Docker Compose
+```bash
+# Start services
+docker-compose up
+
+# Start in background
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop services
+docker-compose down
+
+# Rebuild and start
+docker-compose up --build
+```
 
 ### Demo Accounts
 
